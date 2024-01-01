@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veux-tu sortir avec moi?</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            background-color: #ffd1dc;
+            background-image: url('lien_vers_image_kawaii_fond.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #question-container {
+            display: block;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: #f886bd;
+            border-radius: 15px;
+            padding: 20px;
+            color: #cf6b91;
+        }
+
+        #question {
+            font-size: 25px;
+        }
+
+        #character {
+            width: 200px;
+            position: absolute;
+            top: -220%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #avatar {
+            width: 50px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #answer-container {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 395px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #btn-oui,
+        #btn-non {
+            font-size: 20px;
+            margin-right: 10px;
+            background-color: #f7a2b4;
+            color: #fc6ca3;
+            border: none;
+            padding: 20px 20px;
+            cursor: pointer;
+        }
+
+        #btn-non {
+            transition: transform 0.3s;
+        }
+
+        .shake {
+            animation: shakeAnimation 0.3s;
+        }
+
+        @keyframes shakeAnimation {
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        #fireworks {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .firework {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #firework9 {
+            top: 0%;
+            left: 0%;
+        }
+
+        #message-container {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffcce5;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #message {
+            font-size: 20px;
+            color: #ffffff;
+            z-index: 1000;
+        }
+
+        #non-gif,
+        #non-image {
+            display: none;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="question-container">
+        <div id="question">Hi Moh...tu voudrais pas me donner une micro chance avant que je reparte..?</div>
+        <img id="character" src="spy-family-anya-guilty-512x512.png" alt="Personnage Kawaii">
+    </div>
+
+    <img id="avatar" src="spy-family-anya-guilty-512x512.png" alt="Avatar">
+
+    <div id="answer-container">
+        <button id="btn-oui" onclick="repondre('oui')">Oui</button>
+        <button id="btn-non" onclick="repondre('non')">Non</button>
+    </div>
+
+    <div id="fireworks">
+        <img id="firework9" class="firework" src="icegif-597.gif" alt="Feux d'artifice">
+    </div>
+
+    <div id="message-container">
+        <div id="message">Yay! 🎉</div>
+        <img id="non-gif" src="cat.gif" alt="Gif Non">
+        <img id="non-image" src="pdprofile.png" alt="Image Non">
+    </div>
+
+    <script>
+       function repondre(choix) {
+        if (choix === 'non') {
+            var confirmer = window.confirm("Êtes-vous sûr de votre choix?");
+            if (confirmer) {
+                // Si l'utilisateur confirme, ouvrir une nouvelle page avec l'image et le gif
+                var nouvellePage = window.open("excuse2.html");
+                nouvellePage.onload = function () {
+                    // Une fois la nouvelle page chargée, afficher la boîte de confirmation
+                    var confirmerNouvellePage = nouvellePage.confirm("Êtes-vous sûr de votre choix?");
+                    if (confirmerNouvellePage) {
+                        // Si l'utilisateur confirme sur la nouvelle page, vous pouvez effectuer d'autres actions si nécessaire
+                    } else {
+                        // Si l'utilisateur annule sur la nouvelle page, vous pouvez effectuer d'autres actions si nécessaire
+                    }
+                };
+            } else {
+                // Si l'utilisateur annule, ne rien faire
+            }
+        } else if (choix === 'oui') {
+            document.getElementById('fireworks').style.display = 'block';
+            document.getElementById('message-container').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('question-container').style.display = 'none';
+                document.getElementById('answer-container').style.display = 'none';
+            }, 1000);
+        }
+    }
+</script>
+
+</body>
+
+</html>
+
